@@ -1,7 +1,7 @@
 let img, invertedImg;
 
 function preload() {
-  img = loadImage('136.jpg'); // original Noma Bar illustration
+  img = loadImage('images/02.jpg'); // original Noma Bar illustration
 }
 
 function setup() {
