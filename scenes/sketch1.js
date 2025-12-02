@@ -3,7 +3,7 @@ let spotlightOn = true;
 
 
 function preload() {
-  img = loadImage('02_Nomabar_tp310310.jpg'); // 02_Nomabar_tp310310.jpg
+  img = loadImage('images/01.jpg'); // 02_Nomabar_tp310310.jpg
 }
 
 function setup() {
