@@ -34,7 +34,7 @@ class IntroScene {
 
   mousePressed() {
     if (this.buttonHover) {
-      this.main.showScene("scene1");
+      this.main.showScene("sketch1");
     }
   }
 }
