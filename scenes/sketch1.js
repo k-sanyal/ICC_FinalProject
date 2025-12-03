@@ -1,5 +1,5 @@
-let img, maskG;
-let spotlightOn = true;
+// let img, maskG;
+// let spotlightOn = true;
 
 
 function preload() {
