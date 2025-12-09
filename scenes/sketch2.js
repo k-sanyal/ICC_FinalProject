@@ -15,7 +15,7 @@ class Scene2 {
     this.img = loadImage("images/02.jpg");
     this.maskG = createGraphics(1000, 1000);
 
-    this.metaphorTyper = new TextTyper(this.getMetaphorText(), 20);
+    this.metaphorTyper = new TextTyper(this.getMetaphorText(), 18);
   }
 
   draw() {
