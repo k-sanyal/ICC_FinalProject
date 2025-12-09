@@ -5,6 +5,8 @@ class Scene1 {
 
     this.maskLayer = null;
     this.brushSize = 120;
+
+    this.metaphorTyper = null;
   }
 
   start() {
@@ -14,6 +16,8 @@ class Scene1 {
     this.maskLayer = createGraphics(1000, 1000);
     this.maskLayer.fill(0, 255);
     this.maskLayer.rect(0, 0, 1000, 1000);
+
+    this.metaphorTyper = new TextTyper(this.getMetaphorText(), 20);
   }
 
   draw() {
@@ -37,7 +41,8 @@ class Scene1 {
     text("Scene 1 — The Silent Duality", 1020, 20);
 
     textSize(15);
-    text(this.getMetaphorText(), 1020, 80, 560, height - 100);
+    this.metaphorTyper.update();
+    this.metaphorTyper.draw(1020, 80, 560);
     pop();
   }
 
