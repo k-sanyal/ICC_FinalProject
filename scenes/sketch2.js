@@ -34,6 +34,7 @@ class Scene2 {
     rect(1000, 0, 600, height);
     fill(0);
 
+    textAlign(LEFT, TOP);
     textSize(20);
     text("Scene 2 — The Unseen Faces", 1020, 20);
 
@@ -45,6 +46,8 @@ class Scene2 {
 
   drawArtArea() {
     if (!this.img) return;
+
+    drawCenteredImage(this.img, 0, 0, 1000, 1000);
 
     if (!this.spotlightOn) {
       // Full image
