@@ -34,13 +34,14 @@ class Scene2 {
     rect(1000, 0, 600, height);
     fill(0);
 
-    textAlign(LEFT, TOP);
     textSize(20);
-    text("Scene 2 — The Unseen Faces", 1020, 20);
+    textAlign(LEFT, TOP);
+    text("Scene 2 — The Unseen Faces", 1020, 40);
 
+    textLeading(22);
     textSize(15);
     this.metaphorTyper.update();
-    this.metaphorTyper.draw(1020, 80, 560);
+    this.metaphorTyper.draw(1020, 80, 520);
     pop();
   }
 
