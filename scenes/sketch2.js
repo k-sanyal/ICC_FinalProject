@@ -50,16 +50,12 @@ class Scene2 {
 
     drawCenteredImage(this.img, 0, 0, 1000, 1000);
 
-    if (!this.spotlightOn) {
-      // Full image
-      image(this.img, 0, 0, 1000, 1000);
-      return;
-    }
+    if (!this.spotlightOn) return;
 
     // Dimmed background
     push();
     tint(255, 60);
-    image(this.img, 0, 0, 1000, 1000);
+    drawCenteredImage(this.img, 0, 0, 1000, 1000);
     pop();
 
     // Soft spotlight mask
