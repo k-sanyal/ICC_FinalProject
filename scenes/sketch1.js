@@ -99,7 +99,7 @@ what is shown and what is uncovered.
   mousePressed() {
     // go to next scene only if on the right side
     if (mouseX > 1000) {
-      this.main.showScene("scene2");
+      this.main.showScene("sketch2");
     }
   }
 }
