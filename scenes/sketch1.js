@@ -10,7 +10,7 @@ class Scene1 {
   }
 
   start() {
-    this.img = loadImage("images/01.png");
+    this.img = loadImage("images/02.jpg");
 
     // create mask layer for reveal effect
     this.maskLayer = createGraphics(1000, 1000);
