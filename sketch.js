@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1600, 1000); // wide layout
+  createCanvas(1440, 1000); // wide layout
   main = new SceneMain();
 
   main.addScene("intro", new IntroScene(main));
