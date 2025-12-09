@@ -50,7 +50,7 @@ class Scene1 {
     if (!this.img) return;
 
     // Show the base image
-    image(this.img, 0, 0, 1000, 1000);
+    drawCenteredImage(this.img, 0, 0, 1000, 1000);
 
     // Overlay the dark mask layer
     image(this.maskLayer, 0, 0);
