@@ -12,7 +12,7 @@ class Scene2 {
   }
 
   start() {
-    this.img = loadImage("images/02.jpg");
+    this.img = loadImage("images/01.jpg");
     this.maskG = createGraphics(1000, 1000);
 
     this.metaphorTyper = new TextTyper(this.getMetaphorText(), 18);
