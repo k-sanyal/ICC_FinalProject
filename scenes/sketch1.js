@@ -38,11 +38,11 @@ class Scene1 {
     fill(0);
     textSize(20);
     textAlign(LEFT, TOP);
-    text("Scene 1 — The Silent Duality", 1020, 20);
+    text("Scene 1 — The Silent Duality", 1020, 40);
 
     textSize(15);
     this.metaphorTyper.update();
-    this.metaphorTyper.draw(1020, 80, 560);
+    this.metaphorTyper.draw(1020, 100, 560);
     pop();
   }
 
