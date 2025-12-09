@@ -1,37 +1,59 @@
-let img, invertedImg;
+// let img, maskG;
+let spotlightOn = true;
 
-function preload() {
-  img = loadImage('images/02.jpg'); // original Noma Bar illustration
-}
-
-function setup() {
-  createCanvas(949, 512); // use your image size
-  pixelDensity(1);
-  invertedImg = createGraphics(width, height);
-}
-
-function draw() {
-  background(0);
-  image(img, 0, 0, width, height);
+class Scene2 {
+  constructor(main) {
+    this.main = main;
+    this.img = null;
+  }
   
-  // Create inverted version once
-  if (frameCount === 1) {
-    invertedImg.image(img, 0, 0, width, height);
-    invertedImg.loadPixels();
-    for (let i = 0; i < invertedImg.pixels.length; i += 4) {
-      invertedImg.pixels[i] = 255 - invertedImg.pixels[i];       // R
-      invertedImg.pixels[i + 1] = 255 - invertedImg.pixels[i+1]; // G
-      invertedImg.pixels[i + 2] = 255 - invertedImg.pixels[i+2]; // B
-    }
-    invertedImg.updatePixels();
+  start() {}
+
+  preload() {
+    img = loadImage('images/02.jpg');
   }
 
-  // Reveal amount based on mouse position
-  let revealWidth = constrain(mouseX, 0, width);
-  let imgPart = invertedImg.get(0, 0, revealWidth, height);
-  image(imgPart, 0, 0, revealWidth, height);
+  setup() {
+    createCanvas(646, 439);
+    maskG = createGraphics(width, height);
+    noCursor(); //
+  }
 
-  // Optional: vertical line separator
-  stroke(255, 100);
-  line(revealWidth, 0, revealWidth, height);
-}
+  draw() {
+    background(0);
+
+    if (!spotlightOn) {
+      // When spotlight is OFF → show normal image fully
+      tint(255, 255);
+      image(img, 0, 0, width, height);
+    } else {
+      // When spotlight is ON → dim image and reveal under cursor
+      tint(255, 60);
+      image(img, 0, 0, width, height);
+
+    // Draw dimmed image first
+    tint(255, 60);
+    image(img, 0, 0, width, height);
+
+    // Create soft circular mask around mouse
+    maskG.clear();
+    let grad = maskG.drawingContext.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 120);
+    grad.addColorStop(0, 'rgba(255,255,255,255)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    maskG.drawingContext.fillStyle = grad;
+    maskG.ellipse(mouseX, mouseY, 240);
+
+    // Apply mask to full image
+    let reveal = img.get();
+    reveal.mask(maskG);
+
+    // Draw revealed area
+    tint(255, 255);
+    image(reveal, 0, 0, width, height);
+    }
+  }
+
+  mousePressed() {
+    spotlightOn = !spotlightOn;
+  }
+  }
