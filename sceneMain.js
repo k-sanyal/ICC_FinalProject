@@ -51,3 +51,24 @@ class TextTyper {
     text(this.text.substring(0, this.index), x, y, w);
   }
 }
+
+function drawCenteredImage(img, x, y, w, h) {
+  let imgRatio = img.width / img.height;
+  let boxRatio = w / h;
+
+  let drawW, drawH;
+
+  if (imgRatio > boxRatio) {
+    drawW = w;
+    drawH = w / imgRatio;
+  } else {
+    drawH = h;
+    drawW = h * imgRatio;
+  }
+
+  let offsetX = x + (w - drawW) / 2;
+  let offsetY = y + (h - drawH) / 2;
+
+  image(img, offsetX, offsetY, drawW, drawH);
+}
+
