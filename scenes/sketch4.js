@@ -70,6 +70,6 @@ but emerges in the space between the viewer and the seen.
 
   mousePressed() {
     // move to next scene
-    this.main.showScene("scene1");
+    this.main.showScene("sketch1");
   }
 }
