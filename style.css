@@ -1,7 +1,11 @@
-html, body {
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #000;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 canvas {
-  display: block;
+  border: 1px solid #333;
 }
