@@ -17,7 +17,7 @@ class Scene1 {
     this.maskLayer.fill(0, 255);
     this.maskLayer.rect(0, 0, 1000, 1000);
 
-    this.metaphorTyper = new TextTyper(this.getMetaphorText(), 20);
+    this.metaphorTyper = new TextTyper(this.getMetaphorText(), 18);
   }
 
   draw() {
