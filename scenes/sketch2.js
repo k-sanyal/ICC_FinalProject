@@ -1,59 +1,96 @@
-// let img, maskG;
-let spotlightOn = true;
+let spotlightImg;
 
 class Scene2 {
   constructor(main) {
     this.main = main;
     this.img = null;
-  }
-  
-  start() {}
 
-  preload() {
-    img = loadImage('images/02.jpg');
+    this.maskG = null;
+    this.spotlightOn = true;
+
+    this.metaphorTyper = null;
   }
 
-  setup() {
-    createCanvas(646, 439);
-    maskG = createGraphics(width, height);
-    noCursor(); //
+  start() {
+    this.img = loadImage("images/02.jpg");
+    this.maskG = createGraphics(1000, 1000);
+
+    this.metaphorTyper = new TextTyper(this.getMetaphorText(), 20);
   }
 
   draw() {
-    background(0);
+    background(15);
 
-    if (!spotlightOn) {
-      // When spotlight is OFF → show normal image fully
-      tint(255, 255);
-      image(img, 0, 0, width, height);
-    } else {
-      // When spotlight is ON → dim image and reveal under cursor
-      tint(255, 60);
-      image(img, 0, 0, width, height);
+    // LEFT PANEL
+    push();
+    fill(30);
+    rect(0, 0, 1000, height);
+    this.drawArtArea();
+    pop();
 
-    // Draw dimmed image first
-    tint(255, 60);
-    image(img, 0, 0, width, height);
+    // RIGHT PANEL
+    push();
+    fill(240);
+    rect(1000, 0, 600, height);
+    fill(0);
 
-    // Create soft circular mask around mouse
-    maskG.clear();
-    let grad = maskG.drawingContext.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 120);
-    grad.addColorStop(0, 'rgba(255,255,255,255)');
-    grad.addColorStop(1, 'rgba(255,255,255,0)');
-    maskG.drawingContext.fillStyle = grad;
-    maskG.ellipse(mouseX, mouseY, 240);
+    textSize(20);
+    text("Scene 2 — The Unseen Faces", 1020, 20);
 
-    // Apply mask to full image
-    let reveal = img.get();
-    reveal.mask(maskG);
+    textSize(15);
+    this.metaphorTyper.update();
+    this.metaphorTyper.draw(1020, 80, 560);
+    pop();
+  }
 
-    // Draw revealed area
-    tint(255, 255);
-    image(reveal, 0, 0, width, height);
+  drawArtArea() {
+    if (!this.img) return;
+
+    if (!this.spotlightOn) {
+      // Full image
+      image(this.img, 0, 0, 1000, 1000);
+      return;
     }
+
+    // Dimmed background
+    push();
+    tint(255, 60);
+    image(this.img, 0, 0, 1000, 1000);
+    pop();
+
+    // Soft spotlight mask
+    this.maskG.clear();
+    let g = this.maskG.drawingContext.createRadialGradient(
+      mouseX, mouseY, 0,
+      mouseX, mouseY, 150
+    );
+    g.addColorStop(0, "rgba(255,255,255,255)");
+    g.addColorStop(1, "rgba(255,255,255,0)");
+    this.maskG.drawingContext.fillStyle = g;
+    this.maskG.ellipse(mouseX, mouseY, 300);
+
+    let reveal = this.img.get();
+    reveal.mask(this.maskG);
+
+    image(reveal, 0, 0, 1000, 1000);
+  }
+
+  getMetaphorText() {
+    return `
+Not all truths announce themselves.
+Some require a shift of attention, a soft focus,
+a willingness to see what hides in plain sight.
+
+Move your cursor slowly across the image.
+Let the unseen emerge through the dimness.
+    `;
   }
 
   mousePressed() {
-    spotlightOn = !spotlightOn;
+    if (mouseX > 1000) {
+      this.main.showScene("sketch3"); // or next scene
+    } else {
+      this.spotlightOn = !this.spotlightOn;
+    }
   }
-  }
+}
