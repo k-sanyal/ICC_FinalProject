@@ -31,3 +31,23 @@ class SceneMain {
     }
   }
 }
+
+class TextTyper {
+  constructor(text, speed) {
+    this.text = text;
+    this.speed = speed;
+    this.index = 0;
+    this.lastTime = 0;
+  }
+
+  update() {
+    if (millis() - this.lastTime > this.speed && this.index < this.text.length) {
+      this.index++;
+      this.lastTime = millis();
+    }
+  }
+
+  draw(x, y, w) {
+    text(this.text.substring(0, this.index), x, y, w);
+  }
+}
