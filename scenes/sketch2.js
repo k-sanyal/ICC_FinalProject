@@ -88,7 +88,7 @@ Let the unseen emerge through the dimness.
 
   mousePressed() {
     if (mouseX > 1000) {
-      this.main.showScene("sketch3"); // or next scene
+      this.main.showScene("sketch4"); // or next scene
     } else {
       this.spotlightOn = !this.spotlightOn;
     }
